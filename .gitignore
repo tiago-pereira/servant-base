@@ -1,3 +1,6 @@
 back/.stack-work/
 front/elm-stuff/
 front/node_modules/
+front/dist/
+.stack-work/
+.directory

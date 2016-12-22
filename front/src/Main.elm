@@ -1,22 +1,21 @@
 module Main exposing (..)
 
-import Navigation
+import Navigation exposing (Location)
 import Messages exposing (Msg(..))
 import Models exposing (Model, initialModel)
 import View exposing (view)
 import Update exposing (update)
 import Players.Commands exposing (fetchAll)
-import Stocks.Commands exposing (fetchStocks)
 import Routing exposing (Route)
 
 
-init : Result String Route -> ( Model, Cmd Msg )
-init result =
+init : Location -> ( Model, Cmd Msg )
+init location =
     let
         currentRoute =
-            Routing.routeFromResult result
+            Routing.parseLocation location
     in
-        ( initialModel currentRoute, Cmd.map StocksMsg fetchStocks )
+        ( initialModel currentRoute, Cmd.map PlayersMsg fetchAll )
 
 
 subscriptions : Model -> Sub Msg
@@ -24,21 +23,11 @@ subscriptions model =
     Sub.none
 
 
-urlUpdate : Result String Route -> Model -> ( Model, Cmd Msg )
-urlUpdate result model =
-    let
-        currentRoute =
-            Routing.routeFromResult result
-    in
-        ( { model | route = currentRoute }, Cmd.none )
-
-
-main : Program Never
+main : Program Never Model Msg
 main =
-    Navigation.program Routing.parser
+    Navigation.program OnLocationChange
         { init = init
         , view = view
         , update = update
-        , urlUpdate = urlUpdate
         , subscriptions = subscriptions
         }

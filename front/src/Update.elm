@@ -2,13 +2,13 @@ module Update exposing (..)
 
 import Messages exposing (Msg(..))
 import Models exposing (Model)
+import Routing exposing (parseLocation)
 import Players.Update
-import Stocks.Update
 
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-
+        
         PlayersMsg subMsg ->
             let
                 ( updatedPlayers, cmd ) =
@@ -16,9 +16,9 @@ update msg model =
             in
                 ( { model | players = updatedPlayers }, Cmd.map PlayersMsg cmd )
 
-        StocksMsg subMsg ->
+        OnLocationChange location ->
             let
-                ( updatedStocks, cmd ) =
-                    Stocks.Update.update subMsg model.stocks
+                newRoute =
+                    parseLocation location
             in
-                ( { model | stocks = updatedStocks }, Cmd.map StocksMsg cmd )
+                ( { model | route = newRoute }, Cmd.none )
