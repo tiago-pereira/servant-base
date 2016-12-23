@@ -7,13 +7,27 @@ import Players.List
 import Players.Edit
 import Players.Models exposing (PlayerId)
 import Routing exposing (Route(..))
+import Html.Attributes exposing (class)
 
 
 view : Model -> Html Msg
 view model =
-    div []
-        [ page model ]
+    let
+        hasScrolled =
+              if model.scrolled then "blog has-scrolled" else "blog"
+    in
+        div [ class hasScrolled]
+            [ nav model
+            , page model ]
 
+nav : Model -> Html Msg
+nav model =
+    div [class "blog__page__nav"][
+        Html.nav [ class "blog__page__nav__wrapper" ]
+                 [ div [ class "" ] [ text "Blog" ]
+                 , div [ class "" ] [ text "Portfolio" ]
+                 ]
+        ]
 
 page : Model -> Html Msg
 page model =
@@ -23,7 +37,7 @@ page model =
             Html.map PlayersMsg (Players.List.view model.players)
 
         PlayerRoute id ->
-            playerEditPage model id
+            div [] [text <| toString model.scrolled , playerEditPage model id]
 
         NotFoundRoute ->
             notFoundView

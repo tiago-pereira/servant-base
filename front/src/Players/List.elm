@@ -9,33 +9,16 @@ import Players.Models exposing (Player)
 
 view : List Player -> Html Msg
 view players =
-    div []
-        [ nav players
-        , list players
+    div [class "blog__page"]
+        [ list players
         ]
 
-
-nav : List Player -> Html Msg
-nav players =
-    div [ class "clearfix mb2 white bg-black" ]
-        [ div [ class "left p2" ] [ text "Players" ] ]
 
 
 list : List Player -> Html Msg
 list players =
     div [ class "p2" ]
-        [ table []
-            [ thead []
-                [ tr []
-                    [ th [] [ text "Id" ]
-                    , th [] [ text "Name" ]
-                    , th [] [ text "Level" ]
-                    , th [] [ text "Actions" ]
-                    ]
-                ]
-            , tbody [] (List.map playerRow players)
-            ]
-        ]
+        [ Html.section [] (List.map postCard players) ]
 
 
 editBtn : Player -> Html Msg
@@ -47,12 +30,11 @@ editBtn player =
         [ i [ class "fa fa-pencil mr1" ] [], text "Edit" ]
 
 
-playerRow : Player -> Html Msg
-playerRow player =
-    tr []
-        [ td [] [ text (toString player.id) ]
-        , td [] [ text player.name ]
-        , td [] [ text (toString player.level) ]
-        , td []
-            [ editBtn player ]
+postCard : Player -> Html Msg
+postCard player =
+    Html.article [class "post-section"]
+        [
+          div [class "post-section__card"]
+            [ Html.h1 [] [text "TITULO"]
+            , Html.p [] [text "Esse aqui é um teste de post que eu to escrevendo, esse é o sumário, convida o usuário a ler esse post"]]
         ]

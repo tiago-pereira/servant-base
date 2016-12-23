@@ -1,4 +1,4 @@
-module Main exposing (..)
+port module Main exposing (..)
 
 import Navigation exposing (Location)
 import Messages exposing (Msg(..))
@@ -18,9 +18,11 @@ init location =
         ( initialModel currentRoute, Cmd.map PlayersMsg fetchAll )
 
 
+port windowScrolled : (Bool -> msg) -> Sub msg
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
-    Sub.none
+  windowScrolled WindowScrolled
 
 
 main : Program Never Model Msg

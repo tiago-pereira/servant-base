@@ -8,7 +8,7 @@ import Players.Update
 update : Msg -> Model -> ( Model, Cmd Msg )
 update msg model =
     case msg of
-        
+
         PlayersMsg subMsg ->
             let
                 ( updatedPlayers, cmd ) =
@@ -22,3 +22,6 @@ update msg model =
                     parseLocation location
             in
                 ( { model | route = newRoute }, Cmd.none )
+
+        WindowScrolled scrolled ->
+                ( { model | scrolled = scrolled }, Cmd.none )

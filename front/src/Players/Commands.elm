@@ -10,7 +10,7 @@ import Players.Messages exposing (..)
 fetchAll : Cmd Msg
 fetchAll =
     Http.get fetchAllUrl collectionDecoder
-        |> Http.send FetchAll 
+        |> Http.send FetchAll
 
 
 fetchAllUrl : String

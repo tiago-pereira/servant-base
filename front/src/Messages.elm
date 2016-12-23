@@ -5,4 +5,5 @@ import Navigation exposing (Location)
 
 type Msg
     = PlayersMsg Players.Messages.Msg
-    | OnLocationChange Location 
+    | OnLocationChange Location
+    | WindowScrolled Bool
