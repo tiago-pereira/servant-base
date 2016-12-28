@@ -31,20 +31,45 @@ body {
   align-items: center;
   margin-left: 30%;
   margin-right: 30%;
-  height: 100px
+  height: 150px;
+}
+
+.blog__page__nav__item {
+  cursor: pointer;
+  padding: 20px;
+}
+
+
+.blog__page__nav__logo {
+  font-size: 18px;
+  color: #0D47A1;
+}
+
+.blog__page__nav__item__letter {
+  transition: visibility 0s, opacity 0.5s linear;
+  visibility: visible;
+  opacity: 1;
+  flex: 1 1 auto;
+}
+
+.blog.has-scrolled .blog__page__nav__item__letter--hide-when-scrolled {
+  visibility: hidden;
+  opacity: 0;
 }
 
 .blog.has-scrolled .blog__page__nav__wrapper {
   height: 50px
 }
 
+
+
 .blog .blog__page {
-  margin-top: 100px;
+  margin-top: 150px;
   transition: margin-top 200ms ease-in-out;
 }
 
 .blog.has-scrolled .blog__page {
-  
+  margin-top: 100px;
 }
 
 .post-section {

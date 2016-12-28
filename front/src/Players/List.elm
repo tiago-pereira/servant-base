@@ -9,10 +9,9 @@ import Players.Models exposing (Player)
 
 view : List Player -> Html Msg
 view players =
-    div [class "blog__page"]
+    div [ class "blog__page" ]
         [ list players
         ]
-
 
 
 list : List Player -> Html Msg
@@ -32,9 +31,9 @@ editBtn player =
 
 postCard : Player -> Html Msg
 postCard player =
-    Html.article [class "post-section"]
-        [
-          div [class "post-section__card"]
-            [ Html.h1 [] [text "TITULO"]
-            , Html.p [] [text "Esse aqui é um teste de post que eu to escrevendo, esse é o sumário, convida o usuário a ler esse post"]]
+    Html.article [ class "post-section" ]
+        [ div [ class "post-section__card" ]
+            [ Html.h1 [] [ text "TITULO" ]
+            , Html.p [] [ text "Esse aqui é um teste de post que eu to escrevendo, esse é o sumário, convida o usuário a ler esse post" ]
+            ]
         ]

@@ -20,9 +20,10 @@ init location =
 
 port windowScrolled : (Bool -> msg) -> Sub msg
 
+
 subscriptions : Model -> Sub Msg
 subscriptions model =
-  windowScrolled WindowScrolled
+    windowScrolled WindowScrolled
 
 
 main : Program Never Model Msg
